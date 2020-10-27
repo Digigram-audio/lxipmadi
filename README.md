@@ -86,7 +86,7 @@ Go [here](https://github.com/Digigram-audio/lxipmadi) to download the package. T
 
 ![Checking out the tag](.images/github-check_tag.png "Checking out the tag")
 
-Then, download the RPM package located in the `LX-dkms` directory :
+Then, download the RPM package located in the `src/LX-dkms` directory :
 
 ![Downloading RPM package](.images/github-download_rpm.png "Downloading RPM package")
 
@@ -147,10 +147,10 @@ $ git tag
 $ git checkout 3.1.2
 ```
 
-Copy the `LX` directory to <code>/usr/src/lxipmadi-<em>&lt;version></em></code>, replacing <code><em>&lt;version></em></code> with the one from the previous command (the target directory has to have exactly that name). In our example, the command is :
+Copy the `src/LX` directory to <code>/usr/src/lxipmadi-<em>&lt;version></em></code>, replacing <code><em>&lt;version></em></code> with the one from the previous command (the target directory has to have exactly that name). In our example, the command is :
 
 ```bash
-$ sudo cp -r ./LX /usr/src/lxipmadi-3.1.2
+$ sudo cp -r ./src/LX /usr/src/lxipmadi-3.1.2
 ```
 
 ##### I.3) Install the driver
