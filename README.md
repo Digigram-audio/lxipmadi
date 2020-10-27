@@ -140,7 +140,7 @@ $ git clone https://github.com/Digigram-audio/lxipmadi
 Go into the cloned repository, list the available version tags, and check out to the latest one (`3.1.2` at the time of writing) :
 
 ```bash
-$ cd Alsa
+$ cd lxipmadi
 $ git tag
 [...]
 3.1.2
@@ -215,7 +215,7 @@ $ git clone https://github.com/Digigram-audio/lxipmadi
 Go into the cloned repository, list the available version tags, and check out to the latest one (`3.1.2` at the time of writing) :
 
 ```bash
-$ cd Alsa
+$ cd lxipmadi
 $ git tag
 [...]
 3.1.2
