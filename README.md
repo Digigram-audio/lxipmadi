@@ -60,7 +60,7 @@ This method works on most major distributions, by using the DKMS system. After t
 
 ##### I.1) Install the dependencies
 
-```
+```bash
 $ sudo apt install dkms linux-headers-$(uname -r)
 ```
 
@@ -80,7 +80,7 @@ Then, download the Debian package located in the `src/LX-dkms` directory :
 
 Go into the directory where you downloaded the package (we have downloaded it in `~/digigram` in our example), and install the package :
 
-```
+```bash
 $ cd ~/digigram
 $ sudo apt install ./lxipmadi-dkms_3.1.2_amd64.deb
 ```
@@ -91,13 +91,13 @@ $ sudo apt install ./lxipmadi-dkms_3.1.2_amd64.deb
 
 *   For Fedora/CentOS/Red Hat :
 
-    ```
+    ```bash
     $ sudo yum install dkms kernel-devel
     ```
 
 *   For SUSE/openSUSE :
 
-    ```
+    ```bash
     $ sudo zypper install dkms kernel-devel
     ```
 
@@ -119,14 +119,14 @@ Go into the directory where you downloaded the package (we have downloaded it in
 
 *   For Fedora/CentOS/Red Hat :
 
-    ```
+    ```bash
     $ cd ~/digigram
     $ sudo yum install ./lxipmadi-3.1.2-1dkms.noarch.rpm
     ```
 
 *   SUSE/openSUSE :
 
-    ```
+    ```bash
     $ cd ~/digigram
     $ sudo zypper install ./lxipmadi-3.1.2-1dkms.noarch.rpm
     ```
@@ -149,20 +149,20 @@ Before the next steps, the following packages should be installed through	your d
 
 Create a working directory and go into it. In our example, it will be `~/digigram/github_repo` :
 
-```
+```bash
 $ mkdir -p ~/digigram/github_repo
 $ cd ~/digigram/github_repo
 ```
 
 Clone the [Digigram Github repository](https://github.com/Digigram-audio/lxipmadi) :
 
-```
+```bash
 $ git clone https://github.com/Digigram-audio/lxipmadi
 ```
 
 Go into the cloned repository, list the available version tags, and check out to the latest one (`3.1.2` at the time of writing) :
 
-```
+```bash
 $ cd Alsa
 $ git tag
 [...]
@@ -172,7 +172,7 @@ $ git checkout 3.1.2
 
 Copy the `LX` directory to <code>/usr/src/lxipmadi-<em>&lt;version></em></code>, replacing <code><em>&lt;version></em></code> with the one from the previous command (the target directory has to have exactly that name). In our example, the command is :
 
-```
+```bash
 $ sudo cp -r ./LX /usr/src/lxipmadi-3.1.2
 ```
 
@@ -180,7 +180,7 @@ $ sudo cp -r ./LX /usr/src/lxipmadi-3.1.2
 
 Use DKMS to install the driver for the current kernel :
 
-```
+```bash
 $ sudo dkms install lxipmadi/3.1.2
 ```
 
@@ -188,7 +188,7 @@ $ sudo dkms install lxipmadi/3.1.2
 
 After completing one of the previous set of steps depending on your distribution, run the following command to check which kernels the driver has been installed for (example output on an Ubuntu machine with several kernels installed) :
 
-```
+```bash
 $ sudo dkms status
 lxipmadi, 3.1.2, 5.3.0-18-generic, x86_64: installed
 lxipmadi, 3.1.2, 5.3.0-40-lowlatency, x86_64: installed
@@ -197,19 +197,19 @@ lxipmadi, 3.1.2, 5.3.0-46-generic, x86_64: installed
 
 If you can see the relevant kernel versions with the `installed` tag, everything should work fine. If a kernel version you need is missing, you can run the following command to install it, provided that you have already installed the headers (see step 1 of the instructions for your distribution) :
 
-```
+```bash
 $ sudo dkms install lxipmadi/3.1.2 -k <kernelversion>
 ```
 
 From now on, the driver will be automatically loaded at boot, and for every kernel update, the package manager will automatically run DKMS to build it. If you want to test right away without a reboot, you can manually load the driver with :
 
-```
+```bash
 $ sudo modprobe snd-lxip
 ```
 
 for LX-IP and LX-IP MADI, or :
 
-```
+```bash
 $ sudo modprobe snd-lxmadi
 ```
 
@@ -231,13 +231,13 @@ Please refer to your distribution’s documentation to install these requirement
 
 Clone the [Digigram Github repository](https://github.com/Digigram-audio/lxipmadi) :
 
-```
+```bash
 $ git clone https://github.com/Digigram-audio/lxipmadi
 ```
 
 Go into the cloned repository, list the available version tags, and check out to the latest one (`3.1.2` at the time of writing) :
 
-```
+```bash
 $ cd Alsa
 $ git tag
 [...]
@@ -249,7 +249,7 @@ $ git checkout 3.1.2
 
 Go into the `LX` directory, and compile the driver by simply running `make` :
 
-```
+```bash
 $ cd src/LX
 $ make
 ```
@@ -258,14 +258,14 @@ $ make
 
 The compilation has generated two kernel modules : `snd-lxip.ko` and `snd-lxmadi.ko`. Copy these two modules to the kernel’s modules directory :
 
-```
+```bash
 $ sudo mkdir -p /lib/modules/<kernelversion>/kernel/digigram
 $ sudo cp snd-lx*.ko /lib/modules/<kernelversion>/kernel/digigram
 ```
 
 Then run `depmod` to update the module dependencies :
 
-```
+```bash
 $ sudo depmod -a
 ```
 
@@ -273,12 +273,12 @@ At this point, the driver should automatically be loaded at boot if the card is 
 
 For LX-IP and LX-IP MADI :
 
-```
+```bash
 $ sudo modprobe snd-lxip
 ```
 
 For LX-MADI :
 
-```
+```bash
 $ sudo modprobe snd-lxmadi
 ```
