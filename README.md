@@ -1,26 +1,3 @@
-<!-----
-NEW: Check the "Suppress top comment" option to remove this info from the output.
-
-Conversion time: 1.376 seconds.
-
-
-Using this Markdown file:
-
-1. Paste this output into your source file.
-2. See the notes and action items below regarding this conversion run.
-3. Check the rendered output (headings, lists, code blocks, tables) for proper
-   formatting and use a linkchecker before you publish this page.
-
-Conversion notes:
-
-* Docs to Markdown version 1.0β29
-* Tue Oct 27 2020 01:53:12 GMT-0700 (PDT)
-* Source doc: DIGI MEMO SUPPORT Linux Driver for LX-IP
-* Tables are currently converted to HTML tables.
-* This document has images: check for >>>>>  gd2md-html alert:  inline image link in generated source and store images to your server. NOTE: Images in exported zip file from Google Docs may not appear in  the same order as they do in your doc. Please check the images!
-
------>
-
 # Installing the Linux driver for LX-IP, LX-IP MADI, LX-MADI
 
 * [Option 1 : Automatic installation](#option-1--automatic-installation)
