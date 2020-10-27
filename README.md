@@ -45,13 +45,7 @@ This will allow you to install the driver for the currently running kernel. If y
 
 ##### I.2) Download the driver package
 
-Go [here](https://github.com/Digigram-audio/lxipmadi) to download the package. To do that, check out to the latest version (`3.1.2` at the time of writing) :
-
-![Checking out the tag](.images/github-check_tag.png "Checking out the tag")
-
-Then, download the Debian package located in the `src/LX-dkms` directory :
-
-![Downloading Debian package](.images/github-download_deb.png "Downloading Debian package")
+Choose the latest `.deb` package on the [Releases](https://github.com/Digigram-audio/lxipmadi/releases) page.
 
 ##### I.3) Install the driver package
 
@@ -82,13 +76,7 @@ This will allow you to install the driver for the currently running kernel. If y
 
 ##### I.2) Download the driver package
 
-Go [here](https://github.com/Digigram-audio/lxipmadi) to download the package. To do that, check out to the latest version (`3.1.2` at the time of writing) :
-
-![Checking out the tag](.images/github-check_tag.png "Checking out the tag")
-
-Then, download the RPM package located in the `src/LX-dkms` directory :
-
-![Downloading RPM package](.images/github-download_rpm.png "Downloading RPM package")
+Choose the latest `.rpm` package on the [Releases](https://github.com/Digigram-audio/lxipmadi/releases) page.
 
 ##### I.3) Install the driver package
 
@@ -137,20 +125,20 @@ Clone the [Digigram Github repository](https://github.com/Digigram-audio/lxipmad
 $ git clone https://github.com/Digigram-audio/lxipmadi
 ```
 
-Go into the cloned repository, list the available version tags, and check out to the latest one (`3.1.2` at the time of writing) :
+Go into the cloned repository, list the available version tags, and check out to the latest one (`v3.1.2` at the time of writing) :
 
 ```bash
 $ cd lxipmadi
 $ git tag
 [...]
-3.1.2
-$ git checkout 3.1.2
+v3.1.2
+$ git checkout v3.1.2
 ```
 
-Copy the `src/LX` directory to <code>/usr/src/lxipmadi-<em>&lt;version></em></code>, replacing <code><em>&lt;version></em></code> with the one from the previous command (the target directory has to have exactly that name). In our example, the command is :
+Copy the `src/` directory to <code>/usr/src/lxipmadi-<em>&lt;version></em></code>, replacing <code><em>&lt;version></em></code> with the one from the previous command without the "v" prefix (the target directory has to have exactly that name). In our example, the command is :
 
 ```bash
-$ sudo cp -r ./src/LX /usr/src/lxipmadi-3.1.2
+$ sudo cp -r ./src/ /usr/src/lxipmadi-3.1.2
 ```
 
 ##### I.3) Install the driver
@@ -212,14 +200,14 @@ Clone the [Digigram Github repository](https://github.com/Digigram-audio/lxipmad
 $ git clone https://github.com/Digigram-audio/lxipmadi
 ```
 
-Go into the cloned repository, list the available version tags, and check out to the latest one (`3.1.2` at the time of writing) :
+Go into the cloned repository, list the available version tags, and check out to the latest one (`v3.1.2` at the time of writing) :
 
 ```bash
 $ cd lxipmadi
 $ git tag
 [...]
-3.1.2
-$ git checkout 3.1.2
+v3.1.2
+$ git checkout v3.1.2
 ```
 
 ### II) Compile the driver
@@ -227,7 +215,7 @@ $ git checkout 3.1.2
 Go into the `LX` directory, and compile the driver by simply running `make` :
 
 ```bash
-$ cd src/LX
+$ cd src/
 $ make
 ```
 
