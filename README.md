@@ -24,7 +24,7 @@ Conversion notes:
 # Installing the Linux driver for LX-IP, LX-IP MADI, LX-MADI
 
 * [Option 1 : Automatic installation](#option-1--automatic-installation)
-  * [I) Download and install the driver](#i-downloading-and-installing-the-driver)
+  * [I) Download and install the driver](#i-download-and-install-the-driver)
     * [&gt; Debian, Ubuntu and other Debian-based distributions](#-debian-ubuntu-and-other-debian-based-distributions)
       * [I.1) Install the dependencies](#i1-install-the-dependencies)
       * [I.2) Download the driver package](#i2-download-the-driver-package)
@@ -37,11 +37,11 @@ Conversion notes:
       * [I.1) Install the dependencies](#i1-install-the-dependencies-2)
       * [I.2) Download the driver sources](#i2-download-the-driver-sources)
       * [I.3) Install the driver](#i3-install-the-driver)
-  * [II) Check the installation](#ii-checking-the-installation)
+  * [II) Check the installation](#ii-check-the-installation)
 * [Option 2 : Manually building and installing the driver](#option-2--manually-building-and-installing-the-driver)
-  * [I) Get the source code](#1-get-the-source-code)
-  * [II) Compile the driver](#2-compile-the-driver)
-  * [III) Install and load the driver](#3-install-and-load-the-driver)
+  * [I) Get the source code](#i-get-the-source-code)
+  * [II) Compile the driver](#ii-compile-the-driver)
+  * [III) Install and load the driver](#iii-install-and-load-the-driver)
 
 ## Option 1 : Automatic installation
 
