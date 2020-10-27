@@ -70,15 +70,11 @@ This will allow you to install the driver for the currently running kernel. If y
 
 Go [here](https://github.com/Digigram-audio/lxipmadi) to download the package. To do that, check out to the latest version (`3.1.2` at the time of writing) :
 
-# IMAGE
-
-![alt_text](images/image1.png "image_tooltip")
+![Checking out the tag](.images/github-check_tag.png "Checking out the tag")
 
 Then, download the Debian package located in the `src/LX-dkms` directory :
 
-# IMAGE
-
-![alt_text](images/image2.png "image_tooltip")
+![Downloading Debian package](.images/github-download_deb.png "Downloading Debian package")
 
 ##### I.3) Install the driver package
 
@@ -111,15 +107,11 @@ This will allow you to install the driver for the currently running kernel. If y
 
 Go [here](https://github.com/Digigram-audio/lxipmadi) to download the package. To do that, check out to the latest version (`3.1.2` at the time of writing) :
 
-# IMAGE
-
-![alt_text](images/image3.png "image_tooltip")
+![Checking out the tag](.images/github-check_tag.png "Checking out the tag")
 
 Then, download the RPM package located in the `LX-dkms` directory :
 
-# IMAGE
-
-![alt_text](images/image4.png "image_tooltip")
+![Downloading RPM package](.images/github-download_rpm.png "Downloading RPM package")
 
 ##### I.3) Install the driver package
 
