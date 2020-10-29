@@ -26,7 +26,6 @@ jobs:
       - name: Build Docker image
         run: |
           docker build \
-            --no-cache \
             -t dkms-builder \
             --build-arg=CARD_MODEL="$ENV_CARD_MODEL" \
             --build-arg=DRIVER_VERSION="$ENV_DRIVER_VERSION" \
@@ -65,12 +64,12 @@ jobs:
           asset_name: ${{ steps.build_dkms.outputs.deb_package }}
           asset_content_type: application/vnd.debian.binary-package 
 
-      #- name: Upload sha256sum
-      #  uses: actions/upload-release-asset@v1
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #  with:
-      #    upload_url: ${{ steps.create_release.outputs.upload_url }}
-      #    asset_path: ./output/sha256sum.txt
-      #    asset_name: sha256sum.txt
-      #    asset_content_type: text/plain
+      - name: Upload checksum
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./output/${{ steps.build_dkms.outputs.checksum_file }}
+          asset_name: ${{ steps.build_dkms.outputs.checksum_file }}
+          asset_content_type: text/plain

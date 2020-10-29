@@ -29,5 +29,14 @@ DEB_PACKAGE="/var/lib/dkms/${CARD_MODEL}/${DRIVER_VERSION}/deb/${CARD_MODEL}-dkm
 	cp "${DEB_PACKAGE}" "${OUTPUT_DIR}"
 } || _ERROR_MESSAGE ${LINENO} "Unable to copy DKMS packages to ${OUTPUT_DIR}"
 
+# Generate checksum file
+
+CHECKSUM_ALGORITHM="sha512"
+CHECKSUM_COMMAND="${CHECKSUM_ALGORITHM}sum"
+CHECKSUM_FILE="${OUTPUT_DIR}/${CARD_MODEL}-${DRIVER_VERSION}.${CHECKSUM_ALGORITHM}"
+
+( cd ${OUTPUT_DIR} && ${CHECKSUM_COMMAND} -b * > ${CHECKSUM_FILE} )
+
 echo "::set-output name=rpm_package::$(basename ${RPM_PACKAGE})"
 echo "::set-output name=deb_package::$(basename ${DEB_PACKAGE})"
+echo "::set-output name=checksum_file::$(basename ${CHECKSUM_FILE})"
