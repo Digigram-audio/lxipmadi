@@ -1,0 +1,76 @@
+name: DKMS package building workflow
+on:
+# Trigger manually
+  workflow_dispatch:
+# Trigger when "v____" tags are pushed
+  push:
+    tags:
+      - 'v**'
+
+jobs:
+  build:
+    name: DKMS packages build
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Change directory to repo clone
+        run: cd $GITHUB_WORKSPACE
+
+      - name: Set card model and driver version from dkms.conf
+        run: |
+          source "./src/dkms.conf" && \
+          echo "ENV_CARD_MODEL=${PACKAGE_NAME}" >> $GITHUB_ENV && \
+          echo "ENV_DRIVER_VERSION=${PACKAGE_VERSION}" >> $GITHUB_ENV
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            --no-cache \
+            -t dkms-builder \
+            --build-arg=CARD_MODEL="$ENV_CARD_MODEL" \
+            --build-arg=DRIVER_VERSION="$ENV_DRIVER_VERSION" \
+            .
+
+      - name: Build DKMS packages in Docker container
+        id: build_dkms
+        run: docker run --rm --volume $(pwd)/output:/output dkms-builder
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.ENV_DRIVER_VERSION }}
+          release_name: ${{ env.ENV_CARD_MODEL }}-${{ env.ENV_DRIVER_VERSION }}
+
+      - name: Upload RPM package
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./output/${{ steps.build_dkms.outputs.rpm_package }}
+          asset_name: ${{ steps.build_dkms.outputs.rpm_package }}
+          asset_content_type: application/x-rpm
+
+      - name: Upload DEB package
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./output/${{ steps.build_dkms.outputs.deb_package }}
+          asset_name: ${{ steps.build_dkms.outputs.deb_package }}
+          asset_content_type: application/vnd.debian.binary-package 
+
+      #- name: Upload sha256sum
+      #  uses: actions/upload-release-asset@v1
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #  with:
+      #    upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #    asset_path: ./output/sha256sum.txt
+      #    asset_name: sha256sum.txt
+      #    asset_content_type: text/plain
